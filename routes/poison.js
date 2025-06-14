@@ -23,7 +23,9 @@ router.get('/Poison', async ( req, res) => {
 //add poison with ingredients, effects, and name
 router.post('/Posion', async (req, res) => {
     const result = await db.insert(poison).values({
-      {name:'', ingredients: 'swamp fungal pod, purple mountain flower, imp stool', effects: 'paralysis, lingering damage magicka'}
+      name: 'snial', 
+      ingredients: 'swamp fungal pod, purple mountain flower, imp stool', 
+      effects: 'paralysis, lingering damage magicka'
     });
     res.json({message: 'Poison added successfully '});
 })
