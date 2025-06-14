@@ -25,3 +25,15 @@ const token = jwt.sign({ username }, process.env.JWT_SECRET, { expiresIn: '8h' }
 res.json({ token });
 })
 export default router;
+
+/*
+change get to post
+copy and paste loclalhost:3000/auth/login
+go to authorization tab and select basic auth
+enter username and password
+you should get a token back
+if you get an error, check the console for errors
+
+then you can use this token to access protected routes
+make sure to change the post to get and change the endpoint from login to wateva route ur looking for
+*/
