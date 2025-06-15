@@ -29,6 +29,13 @@ router.post('/Posion', async (req, res) => {
     });
     res.json({message: 'Poison added successfully '});
 })
+
+//delete poison by id
+router.delete('/Poison/:id', async (req, res) => {
+    const result = await db.delete(poison).where(eq(poison.id, id));
+    res.json({message: 'Poison deleted successfully'});
+})
+//look up details on posion id 
     
 
     
