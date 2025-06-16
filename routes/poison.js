@@ -34,7 +34,18 @@ router.delete('/Poison/:id', async (req, res) => {
     const result = await db.delete(poison).where(eq(poison.id, id));
     res.json({message: 'Poison deleted successfully'});
 })
-//look up details on posion id 
+// fetch specific poison by id
+router.get('/Poison/:id', async (req, res) => {
+    const result = await db.select().from(poison).where(eq(poison.id, id));
+        res.status(404).json({message: 'Poison not found'});
+    
+})
+
+//update poison by id
+router.put(('/update/:id'), async (req, res) => {
+    const result = await db.update(poison).set({}).where(eq(poison.id, 1));
+    res.json({message: 'Poison updated successfully'});
+})
     
 
     
