@@ -7,7 +7,6 @@ Patch - changes specific data app.patch('/items/:id', handler)
 DELETE - Remove app.delete('/items/:id', handler)
 */
 
-
 import express from 'express';
 import {db, poison} from '../db.js';
 import {eq, like, and, gt, desc } from 'drizzle-orm';
