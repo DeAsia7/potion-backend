@@ -11,11 +11,12 @@ router.get('/Potion', async ( req, res) => {
 })
 
 // add potion with ingredients, effects, and name
-router.post('/Potion', async (req, res) => {
+router.post('/Potion', validateBody(potionSchema),  async (req, res) => {
+    const {name, ingredient, effects} = req.body;
     const result = await db.insert(potion).values({
-      name: '', 
-      ingredients: '', 
-      effects: ''
+        name: name, 
+        ingredient: ingredient, 
+        effects: effects
     });
     res.json({message: 'Potion added successfully '});
 })
@@ -29,11 +30,20 @@ router.delete('/Potion/:id', async (req, res) => {
 // look up details on potion by id
 router.get('/Potion/:id', async (req, res) => {
     const result = await db.select().from(potion).where(eq(potion.id, id));
+    res.status(404).json({message: 'Potion not found'});
    
 })
 
 // update potion by id
-router.put('/Potion/:id', async (req, res) => {
+router.put(('/update/:id', validateBody (poisonSchema)), async (req, res) => {
+    const id = parseInt(req.params.id);
+     const {name, ingredient, effects} = req.body;
+     const result = await db.update(poison).set({
+         name: name, 
+         ingredient: ingredient, 
+         effects: effects
+     }).where(eq(poison.id, id));
+     res.json({message: 'Poison updated successfully'});
 
 })
 

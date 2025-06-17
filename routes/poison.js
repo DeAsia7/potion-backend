@@ -10,6 +10,7 @@ DELETE - Remove app.delete('/items/:id', handler)
 import express from 'express';
 import {db, poison} from '../db.js';
 import {eq, like, and, gt, desc } from 'drizzle-orm';
+import { parse } from 'dotenv';
 
 const router = express.Router();
 
@@ -21,14 +22,16 @@ router.get('/Poison', async ( req, res) => {
 
 //add poison with ingredients, effects, and name 
 //check frontend for req.body
-router.post('/Poison', async (req, res) => {
+router.post('/Poison', validateBody(poisonSchema),  async (req, res) => {
+    const {name, ingredient, effects} = req.body;
     const result = await db.insert(poison).values({
-        name: req.body.name, 
-        ingredients: req.body.ingredients, 
-        effects: req.body.effects
+        name: name, 
+        ingredient: ingredient, 
+        effects: effects
     });
     res.json({message: 'Poison added successfully '});
-})
+    });
+
 
 //delete poison by id
 router.delete('/Poison/:id', async (req, res) => {
@@ -43,8 +46,14 @@ router.get('/Poison/:id', async (req, res) => {
 })
 
 //update poison by id
-router.put(('/update/:id'), async (req, res) => {
-    const result = await db.update(poison).set({req.body.name, req.body.ingredient, req.body.effects}).where(eq(poison.id, req.params.id));
+router.put(('/update/:id', validateBody (poisonSchema)), async (req, res) => {
+   const id = parseInt(req.params.id);
+    const {name, ingredient, effects} = req.body;
+    const result = await db.update(poison).set({
+        name: name, 
+        ingredient: ingredient, 
+        effects: effects
+    }).where(eq(poison.id, id));
     res.json({message: 'Poison updated successfully'});
 })
     
