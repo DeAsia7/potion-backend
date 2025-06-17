@@ -8,7 +8,7 @@ export const poison = mysqlTable('poison', {
     name: varchar('name', { length: 255 }),
     ingredients: varchar('ingredients', { length: 500 }),
     effect: varchar('effect', { length: 500 }),
-    created_at: datetime('created_at').defaultNow(),
+    created_at: datetime('created_at'),
 })
 
 export const potion = mysqlTable('potion', {

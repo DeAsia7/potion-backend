@@ -57,6 +57,8 @@ router.put(('/update/:id', validateBody (poisonSchema)), async (req, res) => {
     }).where(eq(poison.id, id));
     res.json({message: 'Poison updated successfully'});
 })
+
+export default router;  
     
 
     

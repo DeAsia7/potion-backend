@@ -1,4 +1,4 @@
-export function validateBody(schema) {
+export default function validateBody(schema) {
     return (req, res, next) => {
   const results = schema.safeParse(req.body);
         if (!results.success) {

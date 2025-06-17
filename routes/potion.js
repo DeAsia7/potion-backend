@@ -46,5 +46,6 @@ router.put(('/update/:id', validateBody (poisonSchema)), async (req, res) => {
      res.json({message: 'Poison updated successfully'});
 
 })
+export default router;
 
 

@@ -3,3 +3,5 @@ export function logger(req, res, next) {
     console.log(`[${timestamp}] -  ${req.method} ${req.originalurl}`);
     next();
 }
+
+export default logger;
