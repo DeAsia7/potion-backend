@@ -1,5 +1,5 @@
 import express from 'express';
-import {db, poison} from '../db.js';
+import {db} from '../db/db.js';
 import {eq, like, and, gt, desc } from 'drizzle-orm';
 
 const router = express.Router();

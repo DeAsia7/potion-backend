@@ -1,6 +1,6 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
-import {db, users} from '../db.js';
+import {db} from '../db/db.js';
 import {eq, and} from 'drizzle-orm';
 
 const router = express.Router();

@@ -8,7 +8,7 @@ DELETE - Remove app.delete('/items/:id', handler)
 */
 
 import express from 'express';
-import {db, poison} from '../db.js';
+import {db} from '../db/db.js';
 import {eq, like, and, gt, desc } from 'drizzle-orm';
 import { parse } from 'dotenv';
 
@@ -22,7 +22,7 @@ router.get('/Poison', async ( req, res) => {
 
 //add poison with ingredients, effects, and name 
 //check frontend for req.body
-router.post('/Poison', validateBody(poisonSchema),  async (req, res) => {
+router.post('/add-Poison', validateBody(poisonSchema),  async (req, res) => {
     const {name, ingredient, effects} = req.body;
     const result = await db.insert(poison).values({
         name: name, 

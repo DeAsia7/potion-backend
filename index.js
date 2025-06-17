@@ -2,10 +2,11 @@ import express from 'express';
 import PoisonRoutes from './routes/poison.js';
 import PotionRoutes from './routes/potion.js';
 import authRoutes from './routes/auth.js';
-import {logger} from './middlewares/logger.js';
-import {verifyToken } from './middlewares/verifyToken.js';
-import cors from 'cors';
+import logger from './middlewares/logger.js';
+import verifyToken  from './middlewares/verifyToken.js';
+//import cors from 'cors';
 import dotenv from 'dotenv'
+
 dotenv.config();
 
 const app = express();
