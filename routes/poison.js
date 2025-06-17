@@ -38,6 +38,7 @@ router.delete('/Poison/:id', async (req, res) => {
     const result = await db.delete(poison).where(eq(poison.id, id));
     res.json({message: 'Poison deleted successfully'});
 })
+
 // fetch specific poison by id
 router.get('/Poison/:id', async (req, res) => {
     const result = await db.select().from(poison).where(eq(poison.id, id));
