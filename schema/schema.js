@@ -1,7 +1,7 @@
 //is the mysql table
 
-import { mysqlTable, int, varchar, decimal, tinyint, datetime  } from "drizzle-orm/mysql-core";
-import { effect } from "zod";
+import { mysqlTable, int, varchar, datetime  } from "drizzle-orm/mysql-core";
+
 
 export const poison = mysqlTable('poison', {
     id: int('id').primaryKey().autoincrement(),
