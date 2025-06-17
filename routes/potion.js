@@ -1,7 +1,7 @@
 import express from 'express';
 import {db, potion} from '../db/db.js';
 import {eq } from 'drizzle-orm';
-import { validateBody } from '../middlewares/validateBody.js';
+import  validateBody  from '../middlewares/validateBody.js';
 import { potionSchema } from '../validators/index.js';
 
 
