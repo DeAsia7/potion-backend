@@ -19,12 +19,13 @@ router.get('/Poison', async ( req, res) => {
     res.json(result);
 })
 
-//add poison with ingredients, effects, and name
-router.post('/Posion', async (req, res) => {
+//add poison with ingredients, effects, and name 
+//check frontend for req.body
+router.post('/Poison', async (req, res) => {
     const result = await db.insert(poison).values({
-      name: 'snial', 
-      ingredients: 'swamp fungal pod, purple mountain flower, imp stool', 
-      effects: 'paralysis, lingering damage magicka'
+        name: req.body.name, 
+        ingredients: req.body.ingredients, 
+        effects: req.body.effects
     });
     res.json({message: 'Poison added successfully '});
 })
@@ -43,7 +44,7 @@ router.get('/Poison/:id', async (req, res) => {
 
 //update poison by id
 router.put(('/update/:id'), async (req, res) => {
-    const result = await db.update(poison).set({}).where(eq(poison.id, 1));
+    const result = await db.update(poison).set({req.body.name, req.body.ingredient, req.body.effects}).where(eq(poison.id, req.params.id));
     res.json({message: 'Poison updated successfully'});
 })
     
