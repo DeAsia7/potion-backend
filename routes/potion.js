@@ -38,14 +38,14 @@ router.get('/Potion/:id', async (req, res) => {
 })
 
 // update potion by id
-router.put(('/update/:id', validateBody (poisonSchema)), async (req, res) => {
+router.put('/update/:id', validateBody (potionSchema), async (req, res) => {
     const id = parseInt(req.params.id);
      const {name, ingredient, effects} = req.body;
-     const result = await db.update(poison).set({
+     const result = await db.update(potion).set({
          name: name, 
          ingredient: ingredient, 
          effects: effects
-     }).where(eq(poison.id, id));
+     }).where(eq(potion.id, id));
      res.json({message: 'Poison updated successfully'});
 
 })

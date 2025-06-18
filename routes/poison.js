@@ -49,7 +49,7 @@ router.get('/Poison/:id', async (req, res) => {
 })
 
 //update poison by id
-router.put(('/update/:id', validateBody (poisonSchema)), async (req, res) => {
+router.put('/update/:id', validateBody (poisonSchema), async (req, res) => {
    const id = parseInt(req.params.id);
     const {name, ingredient, effects} = req.body;
     const result = await db.update(poison).set({

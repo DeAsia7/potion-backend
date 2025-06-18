@@ -4,7 +4,7 @@ import PotionRoutes from './routes/potion.js';
 import authRoutes from './routes/auth.js';
 import logger from './middlewares/logger.js';
 import verifyToken  from './middlewares/verifyToken.js';
-//import cors from 'cors';
+import cors from 'cors';
 import dotenv from 'dotenv'
 
 dotenv.config();
