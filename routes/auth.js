@@ -2,6 +2,7 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import {db} from '../db/db.js';
 import {eq, and} from 'drizzle-orm';
+import {user} from '../schema/schema.js';
 
 const router = express.Router();
 
@@ -16,8 +17,8 @@ const base64Credentials = authHeader.split(' ')[1];
 const credentials = Buffer.from(base64Credentials, 'base64').toString('ascii');
 const [username, password] = credentials.split(':');
 
-const user = db.select().from(users).where(and(eq(username, users.username), eq(password, users.password)))
-if (!user) {
+const users = db.select().from(user).where(and(eq(username, user.username), eq(password, user.password)))
+if (!users) {
     return res.status(401).json({message: 'Invalid credentials'});
 }
 

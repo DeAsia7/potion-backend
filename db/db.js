@@ -15,4 +15,4 @@ const pool = mysql.createPool({
 })
 
 export const db = drizzle(pool, {schema, mode: "default"})
-export const {poison, potion, users } = schema;
+export const {poison, potion, user } = schema;

@@ -8,11 +8,11 @@ DELETE - Remove app.delete('/items/:id', handler)
 */
 
 import express from 'express';
-import {db, poison} from '../db/db.js';
+import {db} from '../db/db.js';
 import {eq } from 'drizzle-orm';
 import  validateBody  from '../middlewares/validateBody.js';
 import { poisonSchema } from '../validators/index.js';
-
+import { poison } from '../schema/schema.js';
 
 const router = express.Router();
 

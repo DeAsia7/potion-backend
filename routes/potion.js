@@ -14,7 +14,7 @@ router.get('/Potion', async ( req, res) => {
 })
 
 // add potion with ingredients, effects, and name
-router.post('/Potion', validateBody(potionSchema),  async (req, res) => {
+router.post('/add-Potion', validateBody(potionSchema),  async (req, res) => {
     const {name, ingredient, effects} = req.body;
     const result = await db.insert(potion).values({
         name: name, 
