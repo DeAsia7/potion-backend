@@ -17,8 +17,9 @@ import { poison } from '../schema/schema.js';
 const router = express.Router();
 
 // Get all poisons
-router.get('/Poison', async ( req, res) => {
+router.get('/', async ( req, res) => {
     const result = await db.select().from(poison);
+    console.log("poison")
     res.json(result);
 })
 
@@ -36,13 +37,14 @@ router.post('/add-Poison', validateBody(poisonSchema),  async (req, res) => {
 
 
 //delete poison by id
-router.delete('/Poison/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     const result = await db.delete(poison).where(eq(poison.id, id));
     res.json({message: 'Poison deleted successfully'});
 })
 
 // fetch specific poison by id
-router.get('/Poison/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
+  const id = parseInt(req.params.id);
     const result = await db.select().from(poison).where(eq(poison.id, id));
         res.status(404).json({message: 'Poison not found'});
     

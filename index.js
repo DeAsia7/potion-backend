@@ -22,7 +22,7 @@ app.use(logger);
 app.use(authRoutes);
 
 app.use('/Potion', verifyToken, PotionRoutes);
-app.use('/' , verifyToken, PoisonRoutes);
+app.use('/Poison' , verifyToken, PoisonRoutes);
 
 
 app.listen(PORT, () => {
