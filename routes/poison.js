@@ -19,18 +19,17 @@ const router = express.Router();
 // Get all poisons
 router.get('/', async ( req, res) => {
     const result = await db.select().from(poison);
-    console.log("poison")
     res.json(result);
 })
 
 //add poison with ingredients, effects, and name 
 //check frontend for req.body
 router.post('/add-Poison', validateBody(poisonSchema),  async (req, res) => {
-    const {name, ingredient, effects} = req.body;
+    const {name, ingredients, effect} = req.body;
     const result = await db.insert(poison).values({
         name: name, 
-        ingredient: ingredient, 
-        effects: effects
+        ingredients: ingredients, 
+        effect: effect
     });
     res.json({message: 'Poison added successfully '});
     });
@@ -45,7 +44,7 @@ router.delete('/:id', async (req, res) => {
 // fetch specific poison by id
 router.get('/:id', async (req, res) => {
   const id = parseInt(req.params.id);
-    const result = await db.select().from(poison).where(eq(poison.id, id));
+    const result = await db.select().from(poison).where(eq(poison.id,id));
         res.status(404).json({message: 'Poison not found'});
     
 })
@@ -53,11 +52,11 @@ router.get('/:id', async (req, res) => {
 //update poison by id
 router.put('/update/:id', validateBody (poisonSchema), async (req, res) => {
    const id = parseInt(req.params.id);
-    const {name, ingredient, effects} = req.body;
+    const {name, ingredients, effect} = req.body;
     const result = await db.update(poison).set({
         name: name, 
-        ingredient: ingredient, 
-        effects: effects
+        ingredients: ingredients, 
+        effect: effect
     }).where(eq(poison.id, id));
     res.json({message: 'Poison updated successfully'});
 })
