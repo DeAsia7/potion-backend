@@ -24,7 +24,7 @@ router.get('/', async ( req, res) => {
 
 //add poison with ingredients, effects, and name 
 //check frontend for req.body
-router.post('/add-Poison', validateBody(poisonSchema),  async (req, res) => {
+router.post('/addPoison', validateBody(poisonSchema),  async (req, res) => {
     const {name, ingredients, effect} = req.body;
     const result = await db.insert(poison).values({
         name: name, 
