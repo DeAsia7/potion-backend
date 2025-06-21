@@ -8,7 +8,7 @@ import { potionSchema } from '../validators/index.js';
 const router = express.Router();
 
 // get all potions 
-router.get('/allpotions', async ( req, res) => {
+router.get('/allpotion', async ( req, res) => {
     const result = await db.select().from(potion);
     res.json(result);
 })
