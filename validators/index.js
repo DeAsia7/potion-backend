@@ -10,13 +10,13 @@ export const loginSchema = z.object({
 //poison schema
 export const poisonSchema = z.object({
   name: z.string().min(1, "Name is required"),
-  ingredient: z.string().min(1, "Ingredient is required"),
-  effects: z.string().min(1, "Effects are required"),
+  ingredients: z.string().min(1, "Ingredient is required"),
+  effect: z.string().min(1, "Effects are required"),
   created_at: z.date().optional(),
 });
 //potion schema 
 export const potionSchema = z.object({
   name: z.string().min(1, "Name is required"),
-  ingredient: z.string().min(1, "Ingredient is required"),
-  effects: z.string().min(1, "Effects are required"),
+  ingredients: z.string().min(1, "Ingredient is required"),
+  effect: z.string().min(1, "Effects are required"),
 });
