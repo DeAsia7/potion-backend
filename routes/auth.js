@@ -6,6 +6,7 @@ import {user} from '../schema/schema.js';
 
 const router = express.Router();
 
+
 //use routers to connect. 
 //this is how to login into database on postman
 router.post('/login', async (req, res) => {
