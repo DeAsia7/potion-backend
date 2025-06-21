@@ -18,9 +18,7 @@ const router = express.Router();
 
 // Get all poisons
 router.get('/', async ( req, res) => {
-
      const result = await db.select().from(poison);
-     console.log(result)
     res.json(result);
 })
 
@@ -31,7 +29,8 @@ router.post('/addPoison', validateBody(poisonSchema),  async (req, res) => {
     const result = await db.insert(poison).values({
         name: name, 
         ingredients: ingredients, 
-        effect: effect
+        effect: effect,
+        created_at: new Date()
     });
     res.json({message: 'Poison added successfully '});
     });
@@ -58,7 +57,8 @@ router.put('/update/:id', validateBody (poisonSchema), async (req, res) => {
     const result = await db.update(poison).set({
         name: name, 
         ingredients: ingredients, 
-        effect: effect
+        effect: effect,
+        created_at: new Date()
     }).where(eq(poison.id, id));
     res.json({message: 'Poison updated successfully'});
 })
