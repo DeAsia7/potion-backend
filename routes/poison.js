@@ -17,7 +17,7 @@ import { poison } from '../schema/schema.js';
 const router = express.Router();
 
 // Get all poisons
-router.get('/', async ( req, res) => {
+router.get('/allpoisons', async ( req, res) => {
      const result = await db.select().from(poison);
     res.json(result);
 })
