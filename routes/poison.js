@@ -23,7 +23,7 @@ router.get('/', async ( req, res) => {
      console.log(result)
     res.json(result);
 })
-/*
+
 //add poison with ingredients, effects, and name 
 //check frontend for req.body
 router.post('/addPoison', validateBody(poisonSchema),  async (req, res) => {
@@ -62,7 +62,7 @@ router.put('/update/:id', validateBody (poisonSchema), async (req, res) => {
     }).where(eq(poison.id, id));
     res.json({message: 'Poison updated successfully'});
 })
-*/
+
 export default router;  
     
 

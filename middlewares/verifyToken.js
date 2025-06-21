@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 
-export function verifyToken(req, res, next) {
+export default function verifyToken(req, res, next) {
     const authHeader = req.headers['authorization'];
 
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
@@ -21,4 +21,3 @@ export function verifyToken(req, res, next) {
     }
 
     }
-export default verifyToken;
