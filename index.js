@@ -23,7 +23,7 @@ app.use(authRoutes);
 
 app.use('/Potion', verifyToken, PotionRoutes);
 app.use('/Poison' , verifyToken, PoisonRoutes);
-
+//need to add this prefix to all path when typing in postman
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
