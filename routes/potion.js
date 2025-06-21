@@ -10,7 +10,6 @@ const router = express.Router();
 // get all potions 
 router.get('/allpotions', async ( req, res) => {
     const result = await db.select().from(potion);
-    console.log(result)
     res.json(result);
 })
 

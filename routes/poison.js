@@ -18,8 +18,8 @@ const router = express.Router();
 
 // Get all poisons
 router.get('/allpoisons', async ( req, res) => {
-     const result = await db.select().from(poison);
-    res.json(result);
+    const result = await db.select().from(poison);
+  res.json(result);
 })
 
 //add poison with ingredients, effects, and name 
