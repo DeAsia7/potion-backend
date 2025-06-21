@@ -30,7 +30,7 @@ router.post('/addPoison', validateBody(poisonSchema),  async (req, res) => {
         name: name, 
         ingredients: ingredients, 
         effect: effect,
-        created_at: new Date()
+        //created_at: new Date()
     });
     res.json({message: 'Poison added successfully '});
     });
