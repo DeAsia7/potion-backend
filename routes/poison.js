@@ -45,8 +45,7 @@ router.delete('/:id', async (req, res) => {
 // fetch specific poison by id
 router.get('/:id', async (req, res) => {
   const id = parseInt(req.params.id);
-  console.log(id);
-    const result = await db.select().from(poison).where(eq(poison.id,id));
+    const result = await db.select().from(poison).where(eq(poison.id, id));
         res.status(404).json({message: 'Poison not found'});
     
 })
