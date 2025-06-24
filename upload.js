@@ -7,7 +7,7 @@ async function upload() {
 
     const params = {
         Buckey: process.env.BUCKET_NAME,
-        Key: "file.txt",
+        Key: "",
         Body: stream,
         ContentType: 'text/plain'
     };
