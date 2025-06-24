@@ -21,7 +21,7 @@ export const potionSchema = z.object({
   effect: z.string().min(1, "Effects are required"),
 });
 
-// sends a body post or put. validating body to check if the info in the frontend is in the right format 
-//explian logger. logs wat coming in. time stamp when requests made
+
+
 //middleware needs to be explained better
 //error handling. fix try and catch. 

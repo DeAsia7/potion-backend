@@ -5,3 +5,6 @@ export function logger(req, res, next) {
 }
 
 export default logger;
+
+//explian logger. 
+//logs wat coming in. time stamp when requests made

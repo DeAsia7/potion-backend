@@ -13,4 +13,5 @@ export default function validateBody(schema) {
             next();
         }
     }
-     
+     // sends a body post or put. 
+     //validating body to check if the info in the frontend is in the right format 
