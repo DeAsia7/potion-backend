@@ -17,6 +17,8 @@ app.use(cors({
     credentials: true 
 }));
 app.use(express.json());
+//express.json is used to parse incoming JSON requests and put the parsed data in req.body
+
 app.use(logger);
 
 app.use(authRoutes);
