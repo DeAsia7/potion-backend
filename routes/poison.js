@@ -8,11 +8,19 @@ DELETE - Remove app.delete('/items/:id', handler)
 */
 
 import express from 'express';
-import {db} from '../db/db.js';
+import {db, poison} from '../db/db.js';
 import {eq } from 'drizzle-orm';
 import  validateBody  from '../middlewares/validateBody.js';
 import { poisonSchema } from '../validators/index.js';
-import { poison } from '../schema/schema.js';
+
+
+import fs from 'fs';
+import multer from 'multer'; 
+import s3 from '../utils/s3Client.js';
+
+const upload = multer({dest: 'uploads/'});
+
+
 
 const router = express.Router();
 
@@ -44,10 +52,51 @@ router.delete('/:id', async (req, res) => {
 
 // fetch specific poison by id
 router.get('/:id', async (req, res) => {
-  const id = parseInt(req.params.id);
-    const result = await db.select().from(poison).where(eq(poison.id, id));
-        res.status(404).json({message: 'Poison not found'});
+  const {id} = req.params;
+  console.log(id);
+  //change string into number Number(id),,, my const result (variable) is different from the table name
+    const poisons = await db.select().from(poison).where(eq(poison.id, Number(id)));
+    if (!poison) return res.status(404).json({message: 'Poison not found'});
     
+    res.json ({
+        id: poisons[0].id,
+        name: poisons[0].name,
+        ingredients: poisons[0].ingredients,
+        effect: poisons[0].effect,
+        created_at: poisons[0].created_at,
+        image_url: poisons[0].image_url || null
+    })
+})
+
+router.post("upload-image/:id", upload.single('image'), async (req, res) => {
+    const id = req.params.id;
+    const file = req.file;
+
+    if (!file) 
+        return res.status(400).json({message: 'No file uploaded'});
+    if (id <= 0) return res.status(400).json({message: 'Invalid ID'});
+
+    const fileStream = fs.createReadStream(file.path);
+    const Key = `poison/${id}-${file.originalname}`;
+
+    try{
+const result = await s3.upload({
+            Bucket: process.env.BUCKET_NAME,
+            Key: Key,
+            Body: fileStream,
+            ContentType: file.mimetype
+        }).promise();
+
+        // Update the poison record with the image URL
+        await db.update(poison).set({image_url: result.location})
+        .where(eq(poison.id, Number (id)));
+
+    res.json({url: result.Location});
+
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({message: 'Error uploading image to S3'});
+    }
 })
 
 //update poison by id

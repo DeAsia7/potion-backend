@@ -1,5 +1,6 @@
 import 'dotenv/config'; // Load environment variables from .env file
-const AWS = require('aws-sdk');
+import AWS from 'aws-sdk';
+
 
 const s3 = new AWS.S3({
     region: process.env.AWS_REGION,
@@ -9,4 +10,4 @@ const s3 = new AWS.S3({
     },
 });
 
-module.exports = s3;
+export default s3;
