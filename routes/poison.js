@@ -33,11 +33,12 @@ router.get('/allpoison', async ( req, res) => {
 //add poison with ingredients, effects, and name 
 //check frontend for req.body
 router.post('/add-Poison', validateBody(poisonSchema),  async (req, res) => {
-    const {name, ingredients, effect} = req.body;
+   
+    //const {name, ingredients, effect} = req.body;
     const result = await db.insert(poison).values({
-        name: name, 
-        ingredients: ingredients, 
-        effect: effect,
+        name: 'name', 
+        ingredients: 'ingredients', 
+        effect: 'effect',
         created_at: new Date()
     });
     res.json({message: 'Poison added successfully '});
@@ -53,7 +54,7 @@ router.delete('/:id', async (req, res) => {
 // fetch specific poison by id
 router.get('/:id', async (req, res) => {
   const {id} = req.params;
-  console.log(id);
+
   //change string into number Number(id),,, my const result (variable) is different from the table name
     const poisons = await db.select().from(poison).where(eq(poison.id, Number(id)));
     if (!poison) return res.status(404).json({message: 'Poison not found'});
@@ -67,7 +68,7 @@ router.get('/:id', async (req, res) => {
         image_url: poisons[0].image_url || null
     })
 })
-
+/*
 router.post("upload-image/:id", upload.single('image'), async (req, res) => {
     const id = req.params.id;
     const file = req.file;
@@ -97,8 +98,9 @@ const result = await s3.upload({
         console.error(error);
         return res.status(500).json({message: 'Error uploading image to S3'});
     }
+    
 })
-
+*/
 //update poison by id
 router.put('/update/:id', validateBody (poisonSchema), async (req, res) => {
    const id = parseInt(req.params.id);
