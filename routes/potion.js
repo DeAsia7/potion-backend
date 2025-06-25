@@ -24,10 +24,11 @@ router.get('/allpotion', async ( req, res) => {
 router.post('/add-Potion', validateBody(potionSchema), async (req, res) => {
    //const {name, ingredient, effects} = req.body;
     await db.insert(potion).values({
-        name: '', 
-        ingredient: '', 
-        effects: '',
-        created_at: new Date()
+        name: req.body.name, 
+        ingredients: req.body.ingredients, 
+        effect: req.body.effect,
+        created_at: new Date(),
+        image_url: req.body.image_url || null
     });
     res.json({message: 'Potion added successfully '});
 })

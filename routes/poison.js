@@ -32,17 +32,17 @@ router.get('/allpoison', async ( req, res) => {
 
 //add poison with ingredients, effects, and name 
 //check frontend for req.body
-router.post('/add-Poison', validateBody(poisonSchema),  async (req, res) => {
-   
-    //const {name, ingredients, effect} = req.body;
-    const result = await db.insert(poison).values({
-        name: 'name', 
-        ingredients: 'ingredients', 
-        effect: 'effect',
-        created_at: new Date()
-    });
-    res.json({message: 'Poison added successfully '});
-    });
+router.post('/add-Poison', validateBody(poisonSchema), async (req, res) => {
+    //const {name, ingredient, effects} = req.body;
+     await db.insert(poison).values({
+         name: req.body.name, 
+         ingredients: req.body.ingredients, 
+         effect: req.body.effect,
+         created_at: new Date(),
+         image_url: req.body.image_url || null
+     });
+     res.json({message: 'Poison added successfully '});
+ })
 
 
 //delete poison by id
