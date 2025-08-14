@@ -20,8 +20,6 @@ import s3 from '../utils/s3Client.js';
 
 const upload = multer({dest: 'uploads/'});
 
-
-
 const router = express.Router();
 
 // Get all poisons
